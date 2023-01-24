@@ -2,6 +2,7 @@ import React from "react";
 import "./header.css";
 
 import { RxEraser } from "react-icons/rx";
+import { HiCursorArrowRays } from "react-icons/hi2";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import EditIcon from "@mui/icons-material/Edit";
@@ -12,6 +13,7 @@ type props = {
   setPenColor: React.Dispatch<React.SetStateAction<string>>;
   setDrawingMode: () => void;
   setEraserMode: () => void;
+  setSelectMode: () => void;
   setPenWidth: React.Dispatch<React.SetStateAction<number>>;
   setEraserWidth: React.Dispatch<React.SetStateAction<number>>;
 };
@@ -23,6 +25,7 @@ export default function Header({
   setEraserMode,
   setPenWidth,
   setEraserWidth,
+  setSelectMode,
 }: props) {
   const chnagePenColor = (color: string) => {
     setPenColor(color);
@@ -46,11 +49,17 @@ export default function Header({
         justifyContent="space-evenly"
         alignItems="center"
       >
+        <Button onClick={setSelectMode}>
+          <div className="circle" style={{ backgroundColor: "gray" }}>
+            <HiCursorArrowRays style={{ color: "white", padding: ".5rem" }} />
+          </div>
+        </Button>
         <Button onClick={setDrawingMode}>
           <div className="circle" style={{ backgroundColor: `${penColor}` }}>
             <EditIcon style={{ color: "white" }} />
           </div>
         </Button>
+
         <Slider
           aria-label="Volume"
           min={2}

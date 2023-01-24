@@ -60,6 +60,7 @@ function Main() {
         setPenColor={setpenColor}
         setDrawingMode={setDrawingMode}
         setPenWidth={setPenWidth}
+        setSelectMode={setSelectMode}
         setEraserWidth={setEraserWidth}
       />
       <FabricCanvas onReady={onReady} />
