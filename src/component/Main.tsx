@@ -12,12 +12,9 @@ enum modes {
 
 function Main() {
   const [canvas, setCanvas] = useState<null | fabric.Canvas>(null);
-  // const [press, setPressed] = useState<boolean>(false);
   const [penColor, setpenColor] = useState<string>("yellow");
   const [mode, setMode] = useState<modes>(modes.none);
-  // const [image, setImage] = useState<string>(
-  //   "https://cdn.pixabay.com/photo/2016/11/18/23/41/sun-1837376_960_720.png"
-  // );
+
   const [penWidth, setPenWidth] = useState(2);
   const [eraserWidth, setEraserWidth] = useState(2);
 
@@ -29,12 +26,6 @@ function Main() {
       canvas.setCursor("grab");
       canvas.isDrawingMode = false;
       canvas.requestRenderAll();
-      // const mouseEvnent = e.e;
-      // const delta = new fabric.Point(
-      //   mouseEvnent.movementX,
-      //   mouseEvnent.movementY
-      // );
-      // canvas.relativePan(delta);
     } else if (mode == modes.drawing) {
       canvas.isDrawingMode = true;
       canvas.freeDrawingBrush.color = penColor;
@@ -47,19 +38,7 @@ function Main() {
       canvas.requestRenderAll();
     }
   });
-  // canvas?.on("mouse:down", (e) => {
-  //   if (mode == modes.select) {
-  //     canvas.setCursor("grab");
-  //     canvas.renderAll();
-  //   }
-  //   setPressed(true);
-  // });
-  // canvas?.on("mouse:up", (e) => {
-  //   setPressed(false);
-  //   canvas.off("mouse:move");
-  //   canvas.setCursor("default");
-  //   canvas.renderAll();
-  // });
+
   const setDrawingMode = () => {
     setMode(modes.drawing);
     if (canvas) canvas.isDrawingMode = true;
@@ -83,13 +62,6 @@ function Main() {
         setPenWidth={setPenWidth}
         setEraserWidth={setEraserWidth}
       />
-      <button
-        onClick={() => {
-          setMode(mode === modes.select ? modes.none : modes.select);
-        }}
-      >
-        SELECT MODE
-      </button>
       <FabricCanvas onReady={onReady} />
     </div>
   );
